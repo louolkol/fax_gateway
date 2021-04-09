@@ -8,7 +8,7 @@ provider:
   stage: local
 
   # We use us-west-2 as our AWS region
-  region: us-west-2
+  region: ap-east-1
 
   # 30-second timeout by default
   timeout: 30
