@@ -8,7 +8,7 @@ provider:
   stage: local
 
   # We use us-west-2 as our AWS region
-  region: ap-east-1
+  region: us-west-2
 
   # 30-second timeout by default
   timeout: 30
@@ -16,12 +16,12 @@ provider:
   # We deploy Fax Gateway into a VPC. You can remove this stanza to deploy it outside your VPC.
   vpc:
     securityGroupIds:
-      - sg-09408d97ce1a97fc7
+      - sg-7492cc4f
     subnetIds:
-      - subnet-0d904f9f8e4e33de7
-      - subnet-0eecb686d77fa9fea
-      - subnet-037c3114da0477f7e
-      - subnet-0ec8e635476a780ad
+      - subnet-64b8642e
+      - subnet-b212a1ca
+      - subnet-196d6832
+      - subnet-bbc14ce6
 
   # Tags that will be added to each of the deployment resources
   tags:
@@ -31,8 +31,8 @@ provider:
   environment:
     # Sentry integration: sends Lambda errors to Sentry. Remove this if you don't want to
     # use Sentry
-    SENTRY_DSN: ${ssm:fax_gateway.common.sentry_dsn~true}
-    SENTRY_ENVIRONMENT: ${self:custom.stage}
+    # SENTRY_DSN: ${ssm:fax_gateway.common.sentry_dsn~true}
+    # SENTRY_ENVIRONMENT: ${self:custom.stage}
 
     # Your twilio auth parameters
     TWILIO_SID: ${ssm:fax_gateway.common.twilio_sid~true}
@@ -91,7 +91,7 @@ plugins:
   - serverless-prune-plugin
 
   # Datadog integration: remove this if you don't use datadog
-  - serverless-plugin-datadog
+  # - serverless-plugin-datadog
 
 custom:
   # Specify how to build our python dependencies, and which ones are
